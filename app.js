@@ -16,7 +16,9 @@ app.use(function(req, res, next) {
 
 //路由模块化
 const user = require("./route/user");
+const menu = require("./route/menu");
 app.use("/user", user);
+app.use("/menu", menu);
 
 app.listen(3000, () => {
     console.log("服务器已经启动");
