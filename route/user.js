@@ -35,7 +35,7 @@ user.get('/users', async(req, res) => {
     return res.send({ result: { total, pageNum, users: result }, meta: { status: 200, des: 'success' } })
 });
 
-// 更新用户状态
+// 更新用户信息
 user.put('/update', async(req, res) => {
     let result = await UserDB.updateOne({ _id: req.body._id }, req.body.userInfo);
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });

@@ -17,8 +17,16 @@ app.use(function(req, res, next) {
 //路由模块化
 const user = require("./route/user");
 const menu = require("./route/menu");
+const materialInfo = require("./route/materialInfo");
+const supplier = require("./route/supplier");
+const register = require('./route/register')
+const bill = require("./route/bill")
 app.use("/user", user);
 app.use("/menu", menu);
+app.use("/materialInfo", materialInfo);
+app.use('/supplier', supplier);
+app.use('/bill', bill);
+app.use('/register', register);
 
 app.listen(3000, () => {
     console.log("服务器已经启动");
