@@ -1,7 +1,16 @@
 const express = require('express');
 const { MaterialInfoDB } = require('../model/materialInfodb');
+const { SupplierDB } = require('../model/supplierdb');
 const materialInfo = express.Router();
 materialInfo.get('/materialInfo', async(req, res) => {
+    // const list = await SupplierDB.find({});
+    // const array = [];
+    // for (obj of list) {
+    //     for (obj1 of obj.children) {
+    //         array.push(obj1);
+    //     }
+    // }
+    // MaterialInfoDB.insertMany(array)
     let { pageNum, pageSize } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     let result = await MaterialInfoDB.find({});
