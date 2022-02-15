@@ -4,7 +4,23 @@ const stockSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    number: {
+    supplier: {
+        type: String,
+        required: true
+    },
+    PD: {
+        type: String,
+        required: true
+    },
+    EXP: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    quantity: {
         type: Number,
         required: true
     },

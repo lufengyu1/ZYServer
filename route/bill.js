@@ -12,5 +12,13 @@ bill.get('/bill', async(req, res) => {
         result = await BillDB.find({}).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
     }
     res.send({ result: { total, pageNum, billList: result }, meta: { status: 200, des: 'Success' } });
+});
+
+bill.put('/insert', async(req, res) => {
+    let result = await BillDB.insertMany(req.body);
+    if (!result) {
+        return res.send({ result: null, meta: { status: 404, des: '创建账单失败' } });
+    }
+    return res.send({ result: result[0], meta: { status: 200, des: '成功创建账单' } })
 })
 module.exports = bill

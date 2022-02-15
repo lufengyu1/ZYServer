@@ -8,7 +8,15 @@ const billSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    number: {
+    PD: {
+        type: String,
+        required: true
+    },
+    EXP: {
+        type: String,
+        required: true
+    },
+    quantity: {
         type: Number,
         required: true
     },
@@ -24,15 +32,21 @@ const billSchema = mongoose.Schema({
         type: Number,
         required: true,
         default: 0, //0等待  1完成 2异常
-    }
+    },
+    // time:{
+    //     type: String,
+    //     required: true
+    // }
 });
 const BillDB = mongoose.model('Bill', billSchema);
 // BillDB.create({
-//     supplier: '供应商A',
 //     name: '生石灰',
-//     number: 1000,
-//     price: 100,
-//     total: 100000,
+//     supplier: '供应商A',
+//     PD: '2022-1-1',
+//     EXP: "2025-1-1",
+//     quantity: 1000,
+//     price: 1,
+//     total: 1000,
 //     state: 0
 // });
 module.exports = {
