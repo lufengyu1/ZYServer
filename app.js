@@ -22,13 +22,15 @@ const supplier = require("./route/supplier");
 const register = require('./route/register')
 const bill = require("./route/bill")
 const stock = require("./route/stock");
+const isssuance = require('./route/isssuance');
 app.use("/user", user);
 app.use("/menu", menu);
 app.use("/materialInfo", materialInfo);
 app.use('/supplier', supplier);
 app.use('/bill', bill);
 app.use('/register', register);
-app.use('/stock', stock)
+app.use('/stock', stock);
+app.use('/isssuance', isssuance);
 
 
 app.listen(3000, () => {
