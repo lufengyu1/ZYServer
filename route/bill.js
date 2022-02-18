@@ -20,5 +20,12 @@ bill.put('/insert', async(req, res) => {
         return res.send({ result: null, meta: { status: 404, des: '创建账单失败' } });
     }
     return res.send({ result: result[0], meta: { status: 200, des: '成功创建账单' } })
-})
+});
+
+bill.put('/update', async(req, res) => {
+    let result = await BillDB.updateOne({ _id: req.body.id }, { state: 1 });
+    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "更新失败" } });
+    return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
+});
+
 module.exports = bill

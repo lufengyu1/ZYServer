@@ -31,7 +31,7 @@ const billSchema = mongoose.Schema({
     state: {
         type: Number,
         required: true,
-        default: 0, //0等待  1完成 2异常
+        default: 0, //0等待  1完成  2异常
     },
     // time:{
     //     type: String,

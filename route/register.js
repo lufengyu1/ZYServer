@@ -23,9 +23,7 @@ register.put('/insert', async(req, res) => {
     return res.send({ result: null, meta: { status: 200, des: '入库信息创建成功' } });
 });
 register.put('/update', async(req, res) => {
-    console.log(req.body);
     let result = await RegisterDB.updateOne({ _id: req.body._id }, req.body);
-    console.log(result);
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "材料出入库失败" } });
     return res.send({ result: null, meta: { status: 200, des: "材料出入库成功" } })
 })
