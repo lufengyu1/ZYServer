@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
-const isssuanceSchema = mongoose.Schema({
-    supplier: {
+const questionSchema = mongoose.Schema({
+    id: {
+        type: String,
+        required: true
+    },
+    operation: {
+        type: Number,
+        required: true
+    },
+    reason: {
         type: String,
         required: true
     },
@@ -8,24 +16,10 @@ const isssuanceSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    PD: {
-        type: String,
-        required: true
-    },
-    EXP: {
-        type: String,
-        required: true
-    },
     quantity: {
-        type: Number,
-        required: true
-    },
-    state: {
         type: Number,
         required: true
     }
 });
-const IsssuanceDB = mongoose.model('Isssuance', isssuanceSchema);
-module.exports = {
-    IsssuanceDB
-}
+const QuestionDB = mongoose.model('Question', questionSchema);
+module.exports = { QuestionDB }

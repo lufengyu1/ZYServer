@@ -18,11 +18,22 @@ isssuance.get('/isssuance', async(req, res) => {
 });
 isssuance.put('/insert', async(req, res) => {
     let info = await BillDB.findOne({ _id: req.body.id });
-    let i = { supplier: info.supplier, name: info.name, PD: info.PD, EXP: info.EXP, quantity: info.quantity };
+    let i = { supplier: info.supplier, name: info.name, PD: info.PD, EXP: info.EXP, quantity: info.quantity, state: 0 };
     let result = await IsssuanceDB.insertMany(i);
     if (!result) {
         return res.send({ result: null, meta: { status: 404, des: '出库信息创建失败' } });
     }
     return res.send({ result: null, meta: { status: 200, des: 'success' } });
+});
+isssuance.put('/update', async(req, res) => {
+    let result = await IsssuanceDB.findOne({ _id: req.body.id });
+    let r = null;
+    if (!result) return res.send({ result: null, meta: { status: 404, des: '出库信息无数据' } });
+    if (result.quantity * 1 - req.body.quantity * 1 === 0) {
+        r = await IsssuanceDB.deleteOne({ _id: req.body.id, });
+    } else {
+        r = await IsssuanceDB.updateOne({ _id: req.body.id }, { quantity: result.quantity * 1 - req.body.quantity * 1 });
+    }
+    res.send({ result: null, meta: { status: 200, des: 'success' } });
 })
 module.exports = isssuance;

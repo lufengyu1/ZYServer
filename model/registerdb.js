@@ -12,6 +12,10 @@ const registerSchema = mongoose.Schema({
         type: Number, // 0 出库 ； 1 入库
         required: true
     },
+    quantity: {
+        type: Number,
+        required: true
+    },
     operator: {
         type: String,
     },

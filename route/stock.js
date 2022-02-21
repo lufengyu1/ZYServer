@@ -1,7 +1,7 @@
 const express = require('express');
 const stock = express.Router();
 const { StockDB } = require('../model/stockdb');
-const { BillDB } = require('../model/billdb');
+const { IsssuanceDB } = require('../model/isssuancedb');
 
 stock.get('/stock', async(req, res) => {
     const { pageNum, pageSize } = req.query;
@@ -16,16 +16,18 @@ stock.get('/stock', async(req, res) => {
     res.send({ result: { total, pageNum, stockList: result }, meta: { status: 200, des: 'Success' } });
 });
 stock.put('/update', async(req, res) => {
-    let info = await BillDB.findOne({ _id: req.body.id });
-    let result = await StockDB.findOne({ name: info.name });
+    let result = null;
     let r = null;
-    if (!result) {
-        r = await StockDB.insertMany({ name: info.name, quantity: info.quantity, limit: 1000 });
-    } else {
-        if (req.body.operation === 0)
-            r = await StockDB.updateOne({ name: info.name }, { quantity: info.quantity + result.quantity });
-        else
-            r = await StockDB.updateOne({ name: info.name }, { quantity: result.quantity - info.quantity });
+    if (req.body.operation === 0) {
+        result = await StockDB.findOne({ name: req.body.name });
+        if (!result) {
+            r = await StockDB.insertMany({ name: req.body.name, quantity: req.body.quantity, limit: 1000 });
+        } else {
+            r = await StockDB.updateOne({ name: req.body.name }, { quantity: req.body.quantity + result.quantity });
+        }
+    } else if (req.body.operation === 1) {
+        result = await StockDB.findOne({ name: req.body.name });
+        r = await StockDB.updateOne({ name: req.body.name }, { quantity: result.quantity * 1 - req.body.quantity * 1 });
     }
     res.send({ result: null, meta: { status: 200, des: 'success' } });
 })
