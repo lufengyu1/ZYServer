@@ -25,7 +25,6 @@ user.get('/users', async(req, res) => {
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     // 分页 模糊查询 pageSize要转换为数字
     let result = await UserDB.find({ username: { $regex: query } });
-
     let total = result.length;
     result = await UserDB.find({ username: { $regex: query } }).limit(pageSize - 0);
     if (pageNum > 0) {

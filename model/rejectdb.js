@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const questionSchema = mongoose.Schema({
+const mongoose = require("mongoose");
+const rejectSchema = mongoose.Schema({
     id: {
         type: String,
         required: true
@@ -21,5 +21,7 @@ const questionSchema = mongoose.Schema({
         required: true
     }
 });
-const QuestionDB = mongoose.model('Question', questionSchema);
-module.exports = { QuestionDB }
+const RejectDB = mongoose.model('Reject', rejectSchema);
+module.exports = {
+    RejectDB
+}

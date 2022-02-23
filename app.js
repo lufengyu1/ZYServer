@@ -24,6 +24,7 @@ const bill = require("./route/bill")
 const stock = require("./route/stock");
 const isssuance = require('./route/isssuance');
 const question = require('./route/question');
+const reject = require('./route/reject');
 app.use("/user", user);
 app.use("/menu", menu);
 app.use("/materialInfo", materialInfo);
@@ -33,6 +34,7 @@ app.use('/register', register);
 app.use('/stock', stock);
 app.use('/isssuance', isssuance);
 app.use('/question', question);
+app.use('/reject', reject);
 
 
 app.listen(3000, () => {
