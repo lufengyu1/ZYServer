@@ -21,6 +21,7 @@ const menuSchema = new mongoose.Schema({
 });
 //创建集合
 const MenuDB = mongoose.model('Menu', menuSchema);
+
 // MenuDB.create([{
 //     id: '100',
 //     name: '用户管理',
