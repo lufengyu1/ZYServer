@@ -33,10 +33,14 @@ const billSchema = mongoose.Schema({
         required: true,
         default: 0, //0等待  1完成  2异常
     },
-    // time:{
-    //     type: String,
-    //     required: true
-    // }
+    time: {
+        type: String,
+        required: true
+    },
+    operator: {
+        type: String,
+    }
+
 });
 const BillDB = mongoose.model('Bill', billSchema);
 // BillDB.create({

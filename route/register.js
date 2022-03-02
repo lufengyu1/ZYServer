@@ -2,7 +2,8 @@ const express = require('express');
 const register = express.Router();
 const { RegisterDB } = require('../model/registerdb');
 register.get('/register', async(req, res) => {
-    const { pageNum, pageSize, pageNum1, pageSize1 } = req.query;
+    const { pageNum, pageSize, pageNum1, pageSize1, sort } = req.query;
+    console.log(sort);
     if (!pageNum || !pageSize || !pageNum1 || !pageSize1) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     let result = await RegisterDB.find({});
     let result1 = await RegisterDB.find({ status: 0 });
