@@ -16,7 +16,7 @@ reject.get('/reject', async(req, res) => {
     return res.send({ result: { total, pageNum, rejectList: result }, meta: { status: 200, des: 'success' } });
 });
 reject.put('/insert', async(req, res) => {
-    let result = await RejectDB.insertMany({ id: req.body.id, operation: req.body.operation, name: req.body.name, quantity: req.body.quantity, reason: req.body.reason });
+    let result = await RejectDB.insertMany({ id: req.body.id, operation: req.body.operation, name: req.body.name, quantity: req.body.quantity, reason: req.body.reason, time: req.body.time, operator: req.body.operator });
     if (result) {
         return res.send({ result: null, meta: { status: 404, des: '创建退货信息失败' } });
     }

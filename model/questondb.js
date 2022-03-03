@@ -19,7 +19,11 @@ const questionSchema = mongoose.Schema({
     quantity: {
         type: Number,
         required: true
-    }
+    },
+    operator: {
+        type: String,
+    },
+    time: { type: String },
 });
 const QuestionDB = mongoose.model('Question', questionSchema);
 module.exports = { QuestionDB }

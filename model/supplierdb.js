@@ -11,10 +11,17 @@ const SupplierScher = mongoose.Schema({
     },
     CD: {
         type: String,
-        required: true
     },
+    phone: {
+        type: String,
+    },
+    address: { type: String, },
     children: {
         type: Array,
+        required: true
+    },
+    card: {
+        type: String,
         required: true
     }
 });

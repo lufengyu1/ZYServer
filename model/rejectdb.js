@@ -8,6 +8,10 @@ const rejectSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    operator: {
+        type: String,
+    },
+    time: { type: String, },
     reason: {
         type: String,
         // required: true
