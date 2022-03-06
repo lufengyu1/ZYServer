@@ -4,15 +4,21 @@ const { SupplierDB } = require('../model/supplierdb');
 const { StockDB } = require("../model/stockdb")
 const materialInfo = express.Router();
 materialInfo.get('/materialInfo', async(req, res) => {
-    //将供应商的原料保存到数据库里
-    // const list = await SupplierDB.find({});
-    // const array = [];
-    // for (obj of list) {
-    //     for (obj1 of obj.children) {
-    //         array.push(obj1);
-    //     }
-    // }
-    // MaterialInfoDB.insertMany(array)
+    // 将供应商的原料保存到数据库里
+    const list = await SupplierDB.find({});
+    const array = await MaterialInfoDB.find({});
+    let insertList = [];
+    for (obj of list) {
+        for (obj1 of obj.children) {
+            console.log(obj1);
+            for (item of array) {
+                if (item.name !== obj1.name && item.supplier !== obj1.supplier) {
+                    insertList.push(obj1);
+                }
+            }
+        }
+    }
+    MaterialInfoDB.insertMany(insertList)
     let { query, pageNum, pageSize } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     let result = await MaterialInfoDB.find({ name: { $regex: query } });

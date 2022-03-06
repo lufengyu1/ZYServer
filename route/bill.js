@@ -1,16 +1,31 @@
 const express = require('express');
 const bill = express.Router();
 const { BillDB } = require('../model/billdb');
+const ObjectId = require('mongoose').Types.ObjectId;
 bill.get('/bill', async(req, res) => {
-    const { pageNum, pageSize } = req.query;
+    const { pageNum, pageSize, query } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
-    let result = await BillDB.find({});
-    const total = result.length;
-    result = await BillDB.find({}).limit(pageSize - 0);
-    if (!result) res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
-    if (pageNum > 0) {
-        result = await BillDB.find({}).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+    let result = null;
+    let total = 0;
+    if (query.length === 0) {
+        result = await BillDB.find({});
+        total = result.length;
+        result = await BillDB.find({}).limit(pageSize - 0);
+        if (pageNum > 0) {
+            result = await BillDB.find({}).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+        }
+        if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
+
+    } else {
+        result = await BillDB.find({ _id: new ObjectId(query) });
+        total = result.length;
+        result = await BillDB.find({ _id: new ObjectId(query) }).limit(pageSize - 0);
+        if (pageNum > 0) {
+            result = await BillDB.find({ _id: new ObjectId(query) }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+        }
+        if (!result) res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
     }
+
     res.send({ result: { total, pageNum, billList: result }, meta: { status: 200, des: 'Success' } });
 });
 
