@@ -14,5 +14,16 @@ supplier.get('/supplier', async(req, res) => {
     }
     res.send({ result: { total, pageNum, supplierList: result }, meta: { status: 200, des: 'Success' } });
 })
-
+supplier.put('/insert', async(req, res) => {
+    console.log(req.body);
+    let exist = await SupplierDB.findOne({ name: req.body.name });
+    if (exist) {
+        return res.send({ result: null, meta: { status: 404, des: "供应商已存在" } });
+    } else {
+        let result = await SupplierDB.insertMany(req.body);
+        if (result) {
+            res.send({ res: null, meta: { status: 200, des: 'success' } });
+        }
+    }
+})
 module.exports = supplier

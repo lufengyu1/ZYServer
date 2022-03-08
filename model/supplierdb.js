@@ -18,7 +18,6 @@ const SupplierScher = mongoose.Schema({
     address: { type: String, },
     children: {
         type: Array,
-        required: true
     },
     card: {
         type: String,

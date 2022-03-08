@@ -20,10 +20,7 @@ const materialInfoSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    quantity: {
-        type: Number,
-        required: true
-    }
+
 });
 const MaterialInfoDB = mongoose.model('materialInfo', materialInfoSchema);
 // MaterialInfoDB.create({
