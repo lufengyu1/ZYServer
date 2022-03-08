@@ -7,7 +7,7 @@ bill.get('/bill', async(req, res) => {
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     let result = null;
     let total = 0;
-    if (query.length === 0) {
+    if (query.trim().length === 0) {
         result = await BillDB.find({});
         total = result.length;
         result = await BillDB.find({}).limit(pageSize - 0);
