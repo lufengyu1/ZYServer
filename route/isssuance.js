@@ -18,7 +18,7 @@ isssuance.get('/isssuance', async(req, res) => {
 });
 isssuance.put('/insert', async(req, res) => {
     let info = await BillDB.findOne({ _id: req.body.id });
-    let i = { supplier: info.supplier, name: info.name, PD: info.PD, EXP: info.EXP, quantity: info.quantity, state: 0 };
+    let i = { supplier: info.supplier, name: info.name, PD: req.body.time, EXP: info.EXP, quantity: info.quantity, state: 0 };
     let result = await IsssuanceDB.insertMany(i);
     if (!result) {
         return res.send({ result: null, meta: { status: 404, des: '出库信息创建失败' } });

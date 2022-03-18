@@ -8,14 +8,14 @@ const billSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    PD: {
-        type: String,
-        required: true
-    },
-    EXP: {
-        type: String,
-        required: true
-    },
+    // PD: {
+    //     type: String,
+    //     required: true
+    // },
+    // EXP: {
+    //     type: String,
+    //     required: true
+    // },
     quantity: {
         type: Number,
         required: true
