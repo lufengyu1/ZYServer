@@ -57,5 +57,12 @@ supplier.put('/update', async(req, res) => {
     let result = await SupplierDB.updateOne({ _id: req.body._id }, req.body);
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
     return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
+});
+// 根据id删除供应商
+supplier.delete('/delete', async(req, res) => {
+    let result1 = await SupplierDB.findOne({ _id: req.query._id })
+    if (!result1) return res.send({ result: null, meta: { status: 404, des: "供应商删除失败" } });
+    let result2 = await SupplierDB.deleteOne({ _id: req.query._id });
+    if (result2.deletedCount > 0) return res.send({ result: null, meta: { status: 200, des: "success" } });
 })
 module.exports = supplier
