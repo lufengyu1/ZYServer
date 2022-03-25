@@ -21,7 +21,6 @@ materialInfo.get('/materialInfo', async(req, res) => {
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     let result = await MaterialInfoDB.find({ name: { $regex: query } });
     let total = result.length;
-    console.log(total);
     result = await MaterialInfoDB.find({ name: { $regex: query } }).limit(pageSize - 0);
     if (!result) res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
     if (pageNum > 0) {
