@@ -10,7 +10,7 @@ const questionSchema = mongoose.Schema({
     },
     reason: {
         type: String,
-        // required: true
+
     },
     name: {
         type: String,

@@ -22,4 +22,9 @@ reject.put('/insert', async(req, res) => {
     }
     res.send({ result: null, meta: { status: 200, des: 'success' } });
 });
+reject.get('/id', async(req, res) => {
+    let result = await RejectDB.findOne({ id: req.query.id });
+    if (!result) return res.send({ result: null, meta: { status: 404, des: '未知道错误订单' } });
+    return res.send({ result: result, meta: { status: 200, des: "success" } });
+})
 module.exports = reject;

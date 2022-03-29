@@ -67,38 +67,38 @@ supplier.delete('/delete', async(req, res) => {
 
 // 修改供应商原料信息
 supplier.put('/updateMaterial', async(req, res) => {
-        let result1 = await SupplierDB.findOne({ name: req.body.supplier });
-        let children = result1.children;
-        for (item of children) {
-            if (item.name === req.body.name) {
-                item.price = req.body.price;
-                break;
-            }
+    let result1 = await SupplierDB.findOne({ name: req.body.supplier });
+    let children = result1.children;
+    for (item of children) {
+        if (item.name === req.body.name) {
+            item.price = req.body.price;
+            break;
         }
-        let result = await SupplierDB.updateOne({ name: req.body.supplier }, { children: children });
-        const list = await SupplierDB.find({});
-        const array = await MaterialInfoDB.find({});
-        MaterialInfoDB.deleteMany({}, (err) => {
-            if (err) console.log(err);
-        });
-        let insertList = [];
-        for (obj of list) {
-            for (obj1 of obj.children) {
-                insertList.push(obj1);
-            }
+    }
+    let result = await SupplierDB.updateOne({ name: req.body.supplier }, { children: children });
+    const list = await SupplierDB.find({});
+    const array = await MaterialInfoDB.find({});
+    MaterialInfoDB.deleteMany({}, (err) => {
+        if (err) console.log(err);
+    });
+    let insertList = [];
+    for (obj of list) {
+        for (obj1 of obj.children) {
+            insertList.push(obj1);
         }
-        MaterialInfoDB.insertMany(insertList);
-        if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
-        return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
-    })
-    // 删除供应商原料
+    }
+    MaterialInfoDB.insertMany(insertList);
+    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
+    return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
+});
+// 删除供应商原料
 supplier.delete('/delMaterial', async(req, res) => {
     let result1 = await SupplierDB.findOne({ name: req.query.supplier });
     let children = result1.children.filter((item) => {
         return item.name !== req.query.name;
     });
     let result = await SupplierDB.updateOne({ name: req.query.supplier }, { children: children });
-    //
+    if (!result.acknowledged) return res.send({ result: null, meta: { status: 404, des: '原料删除失败' } });
     const list = await SupplierDB.find({});
     const array = await MaterialInfoDB.find({});
     MaterialInfoDB.deleteMany({}, (err) => {
@@ -111,7 +111,6 @@ supplier.delete('/delMaterial', async(req, res) => {
         }
     }
     MaterialInfoDB.insertMany(insertList)
-        //
-    return res.send({ result: null, meta: { status: 200, des: "success" } });
-})
+    return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
+});
 module.exports = supplier

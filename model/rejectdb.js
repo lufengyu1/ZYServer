@@ -14,7 +14,7 @@ const rejectSchema = mongoose.Schema({
     time: { type: String, },
     reason: {
         type: String,
-        // required: true
+
     },
     name: {
         type: String,

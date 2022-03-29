@@ -19,6 +19,11 @@ register.get('/register', async(req, res) => {
     }
     res.send({ result: { total: total, pageNum: pageNum, registerList: result, total1: total1, pageNum1: pageNum1, registerList1: result1 }, meta: { status: 200, des: 'Success' } });
 });
+register.get('/todo', async(req, res) => {
+    let result = await RegisterDB.find({ status: 0 });
+    if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
+    return res.send({ result: result, meta: { status: 200, des: "success" } });
+});
 register.put('/insert', async(req, res) => {
     let result = await RegisterDB.insertMany(req.body);
     if (!result) return res.send({ result: null, meta: { status: 404, des: '入库信息创建失败' } });

@@ -29,7 +29,7 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //     children: [{
 //         id: '110',
 //         name: '用户列表',
-//         path: 'users'
+//         path: 'user'
 //     }]
 // }, {
 //     id: '200',
@@ -38,22 +38,22 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //     children: [{
 //         id: '210',
 //         name: '原料信息',
-//         path: '1',
+//         path: 'materialinfo',
 //         children: []
 //     }, {
 //         id: '220',
 //         name: '供应商信息',
-//         path: '1',
+//         path: 'supplier',
 //         children: []
 //     }, {
 //         id: '230',
 //         name: '账单信息',
-//         path: '1',
+//         path: 'bill',
 //         children: []
 //     }, {
 //         id: '240',
 //         name: '退货信息',
-//         path: '1',
+//         path: 'reject',
 //         children: []
 //     }]
 // }, {
@@ -63,29 +63,24 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //     children: [{
 //         id: '310',
 //         name: '登记出入库信息',
-//         path: '1',
+//         path: 'register',
 //         children: []
 //     }, {
 //         id: '320',
 //         name: '原料库存检查',
-//         path: '1',
+//         path: 'stock',
 //         children: []
 //     }, {
 //         id: '330',
-//         name: '原料保质期检查',
-//         path: '1',
+//         name: '原料出库',
+//         path: 'isssuance',
 //         children: []
 //     }, {
 //         id: '340',
 //         name: '问题原料记录',
-//         path: '1',
+//         path: 'question',
 //         children: []
 //     }]
-// }, {
-//     id: '400',
-//     name: '原料销售管理',
-//     path: '1',
-//     children: []
 // }])
 
 module.exports = {

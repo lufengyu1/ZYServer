@@ -8,14 +8,9 @@ const isssuanceSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    // PD: {
-    //     type: String,
-    //     required: true
-    // },
-    // EXP: {
-    //     type: String,
-    //     required: true
-    // },
+    time: {
+        type: String,
+    },
     quantity: {
         type: Number,
         required: true
