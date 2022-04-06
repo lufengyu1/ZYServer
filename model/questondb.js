@@ -10,7 +10,7 @@ const questionSchema = mongoose.Schema({
     },
     reason: {
         type: String,
-
+        required: true
     },
     name: {
         type: String,
@@ -24,6 +24,10 @@ const questionSchema = mongoose.Schema({
         type: String,
     },
     time: { type: String },
+    action: {
+        type: String,
+        required: true
+    }
 });
 const QuestionDB = mongoose.model('Question', questionSchema);
 module.exports = { QuestionDB }

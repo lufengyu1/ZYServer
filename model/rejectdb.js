@@ -14,6 +14,7 @@ const rejectSchema = mongoose.Schema({
     time: { type: String, },
     reason: {
         type: String,
+        required: true
 
     },
     name: {
@@ -22,6 +23,10 @@ const rejectSchema = mongoose.Schema({
     },
     quantity: {
         type: Number,
+        required: true
+    },
+    action: {
+        type: String,
         required: true
     }
 });

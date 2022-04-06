@@ -29,7 +29,15 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //     children: [{
 //         id: '110',
 //         name: '用户列表',
-//         path: 'user'
+//         path: 'users'
+//     }, {
+//         id: '120',
+//         name: '权限列表',
+//         path: 'right'
+//     }, {
+//         id: '130',
+//         name: '部门列表',
+//         path: 'department'
 //     }]
 // }, {
 //     id: '200',
@@ -81,7 +89,7 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //         path: 'question',
 //         children: []
 //     }]
-// }])
+// }]);
 
 module.exports = {
     MenuDB

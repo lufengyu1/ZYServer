@@ -1,5 +1,6 @@
 // 创建用户集合
 const mongoose = require('mongoose');
+const department = require('../route/department');
 // 创建用户集合规则
 const userSchema = new mongoose.Schema({
     username: {
@@ -32,7 +33,8 @@ const userSchema = new mongoose.Schema({
     isLogin: {
         type: Number,
         default: 0 // 0未登录，1已登录
-    }
+    },
+    department: { type: String, }
 });
 //创建集合
 const UserDB = mongoose.model('User', userSchema);

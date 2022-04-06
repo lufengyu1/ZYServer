@@ -2,7 +2,7 @@ const express = require('express');
 const supplier = express.Router();
 const { SupplierDB } = require('../model/supplierdb');
 const { MaterialInfoDB } = require('../model/materialInfodb');
-
+// 获取供应商信息
 supplier.get('/supplier', async(req, res) => {
     const { pageNum, pageSize, query } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
@@ -64,7 +64,6 @@ supplier.delete('/delete', async(req, res) => {
     let result2 = await SupplierDB.deleteOne({ _id: req.query._id });
     if (result2.deletedCount > 0) return res.send({ result: null, meta: { status: 200, des: "success" } });
 });
-
 // 修改供应商原料信息
 supplier.put('/updateMaterial', async(req, res) => {
     let result1 = await SupplierDB.findOne({ name: req.body.supplier });
@@ -113,4 +112,12 @@ supplier.delete('/delMaterial', async(req, res) => {
     MaterialInfoDB.insertMany(insertList)
     return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
 });
+
+// 根据供应商名字获取供应商信息
+supplier.get("/name", async(req, res) => {
+    console.log(req.query);
+    let result = await SupplierDB.findOne({ name: req.query.name });
+    console.log(result);
+    res.send({ result: result, meta: { status: 201, des: 'success' } });
+})
 module.exports = supplier

@@ -21,7 +21,8 @@ question.get('/question', async(req, res) => {
 })
 
 question.put('/insert', async(req, res) => {
-    let result = await QuestionDB.insertMany({ id: req.body.id, operation: req.body.operation, name: req.body.name, quantity: req.body.quantity, reason: req.body.reason, time: req.body.time, operator: req.body.operator });
+    console.log(req.body);
+    let result = await QuestionDB.insertMany({ id: req.body.id, operation: req.body.operation, name: req.body.name, quantity: req.body.quantity, reason: req.body.reason, time: req.body.time, operator: req.body.operator, action: req.body.action });
     if (result) {
         return res.send({ result: null, meta: { status: 404, des: '创建原料问题记录失败' } });
     }

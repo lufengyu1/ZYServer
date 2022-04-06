@@ -25,6 +25,8 @@ const stock = require("./route/stock");
 const isssuance = require('./route/isssuance');
 const question = require('./route/question');
 const reject = require('./route/reject');
+const role = require('./route/role')
+const department = require('./route/department')
 app.use("/user", user);
 app.use("/menu", menu);
 app.use("/materialInfo", materialInfo);
@@ -35,6 +37,8 @@ app.use('/stock', stock);
 app.use('/isssuance', isssuance);
 app.use('/question', question);
 app.use('/reject', reject);
+app.use('/role', role);
+app.use('/department', department);
 
 
 app.listen(3000, () => {

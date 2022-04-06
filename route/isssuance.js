@@ -17,7 +17,6 @@ isssuance.get('/isssuance', async(req, res) => {
     return res.send({ result: { total, pageNum, isssuance: result }, meta: { status: 200, des: 'success' } })
 });
 isssuance.put('/insert', async(req, res) => {
-    console.log(req.body);
     let info = await BillDB.findOne({ _id: req.body.id });
     let i = { supplier: info.supplier, name: info.name, time: req.body.time, quantity: info.quantity, state: 0 };
     let result = await IsssuanceDB.insertMany(i);
