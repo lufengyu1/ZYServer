@@ -21,7 +21,6 @@ const menuSchema = new mongoose.Schema({
 });
 //创建集合
 const MenuDB = mongoose.model('Menu', menuSchema);
-
 // MenuDB.create([{
 //     id: '100',
 //     name: '用户管理',
@@ -88,7 +87,7 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //         name: '问题原料记录',
 //         path: 'question',
 //         children: []
-//     }]
+//     }, { id: '400', name: '数据统计', path: 'statistics', children: [{ id: '410', name: '原料出入库统计', path: 'statistics' }] }]
 // }]);
 
 module.exports = {

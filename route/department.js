@@ -5,7 +5,7 @@ const { DepartmentDB } = require('../model/departmentdb');
 department.get('/', async(req, res) => {
     let result = await DepartmentDB.find({});
     if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
-    return res.send({ result: result, meta: { status: 200, des: 'success' } })
+    return res.send({ result: result, meta: { status: 200, des: 'success' } });
 });
 // // insert
 // role.put('/insert', async(req, res) => {

@@ -1,7 +1,7 @@
 const express = require('express');
 const role = express.Router();
 const { RoleDB } = require('../model/roledb');
-// get
+// get 有分页
 role.get('/', async(req, res) => {
     let { query, pageNum, pageSize } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
@@ -39,5 +39,11 @@ role.delete('/delete', async(req, res) => {
     let result2 = await RoleDB.deleteOne({ _id: req.query._id });
     if (result2.deletedCount > 0) return res.send({ result: null, meta: { status: 200, des: "success" } });
     else return res.send({ result: null, meta: { status: 404, des: "角色删除失败" } });
+});
+// get 无分页
+role.get('/role', async(req, res) => {
+    let result = await RoleDB.find({});
+    if (!result) res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
+    return res.send({ result: result, meta: { status: 200, des: 'success' } });
 });
 module.exports = role;

@@ -8,7 +8,11 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: true,
         minlength: 3,
-        maxlength: 12
+        maxlength: 18
+    },
+    name: {
+        type: String,
+        unique: true,
     },
     password: {
         type: String,
@@ -34,19 +38,25 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0 // 0未登录，1已登录
     },
-    department: { type: String, }
+    department: { type: String, },
+    create: {
+        type: String,
+    }
 });
 //创建集合
 const UserDB = mongoose.model('User', userSchema);
 // UserDB.create([{
 //     username: 'admin',
+//     name: '陆凤宇',
 //     password: '123456',
 //     email: '123456@qq.com',
 //     phone: 12345678912,
 //     role: "超级管理员",
 //     state: true,
-//     isLogin: 0
-// }])
+//     isLogin: 0,
+//     department: '开发部',
+//     create: '2018-01-01 10:04:34'
+// }]);
 
 module.exports = {
     UserDB

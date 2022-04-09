@@ -60,13 +60,38 @@ user.delete('/delete', async(req, res) => {
     if (!result1) return res.send({ result: null, meta: { status: 404, des: "用户删除失败" } });
     let result2 = await UserDB.deleteOne({ _id: req.query._id });
     if (result2.deletedCount > 0) return res.send({ result: null, meta: { status: 200, des: "success" } });
-})
+});
 
 // 根据id返回用户信息
 user.get('/userinfo', async(req, res) => {
     let result = await UserDB.findOne(req.query);
     if (!result) return res.send({ result: null, meta: { status: 404, des: "未查询到该用户" } });
     return res.send({ result: result, meta: { status: 200, des: "success" } });
-})
+});
 
+// 根据部门返回用户列表
+user.get('/department', async(req, res) => {
+    let { query, pageNum, pageSize } = req.query;
+    if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
+    let result = await UserDB.find({ department: { $regex: query } })
+    let total = result.length;
+    result = await UserDB.find({ department: { $regex: query } }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+    if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
+    return res.send({ result: { total: total, pageNum, users: result }, meta: { status: 200, des: 'success' } })
+});
+
+// 更新角色
+user.put('/updaterole', async(req, res) => {
+    let result = await UserDB.updateOne({ _id: req.body._id }, { role: req.body.role });
+    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
+    return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
+});
+
+// 更新部门
+user.put('/updatedep', async(req, res) => {
+    console.log(req.body);
+    let result = await UserDB.updateOne({ _id: req.body._id }, { department: req.body.department });
+    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
+    return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
+});
 module.exports = user;

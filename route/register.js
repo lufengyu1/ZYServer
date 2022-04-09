@@ -2,6 +2,7 @@ const express = require('express');
 const register = express.Router();
 const { RegisterDB } = require('../model/registerdb');
 const ObjectId = require('mongoose').Types.ObjectId;
+// 获取登记列表
 register.get('/register', async(req, res) => {
     const { pageNum, pageSize, pageNum1, pageSize1, type, num, query, query1 } = req.query;
     let sort = {};
@@ -33,11 +34,13 @@ register.get('/register', async(req, res) => {
 
     res.send({ result: { total: total, pageNum: pageNum, registerList: result, total1: total1, pageNum1: pageNum1, registerList1: result1 }, meta: { status: 200, des: 'Success' } });
 });
+// 获取未处理列表
 register.get('/todo', async(req, res) => {
     let result = await RegisterDB.find({ status: 0 });
     if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
     return res.send({ result: result, meta: { status: 200, des: "success" } });
 });
+// 插入
 register.put('/insert', async(req, res) => {
     let result = null
     if (req.body.operation === 0) {
@@ -50,9 +53,15 @@ register.put('/insert', async(req, res) => {
     if (!result) return res.send({ result: null, meta: { status: 404, des: '入库信息创建失败' } });
     return res.send({ result: null, meta: { status: 200, des: '入库信息创建成功' } });
 });
+// 更新
 register.put('/update', async(req, res) => {
     let result = await RegisterDB.updateOne({ _id: req.body._id }, req.body);
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "材料出入库失败" } });
     return res.send({ result: null, meta: { status: 200, des: "材料出入库成功" } })
+});
+register.get('/done', async(req, res) => {
+    let result = await RegisterDB.find({ status: 1 });
+    if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
+    return res.send({ result: result, meta: { status: 200, des: "success" } });
 });
 module.exports = register
