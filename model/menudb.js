@@ -87,9 +87,9 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //         name: '问题原料记录',
 //         path: 'question',
 //         children: []
-//     }, { id: '400', name: '数据统计', path: 'statistics', children: [{ id: '410', name: '原料出入库统计', path: 'statistics' }] }]
+//     }, { id: '400', name: '数据统计', path: 'statistics', children: [{ id: '410', name: '原料入库数据统计', path: 'inbound' }, { id: '420', name: '原料出库数据统计', path: 'outbound' }, { id: '430', name: '原料出入库数据统计', path: 'iobound' }] }]
 // }]);
-
+// MenuDB.create({ id: '400', name: '数据统计', path: 'statistics', children: [{ id: '410', name: '原料入库数据统计', path: 'inbound' }, { id: '420', name: '原料出库数据统计', path: 'outbound' }] })
 module.exports = {
     MenuDB
 }
