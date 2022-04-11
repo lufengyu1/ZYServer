@@ -89,7 +89,6 @@ user.put('/updaterole', async(req, res) => {
 
 // 更新部门
 user.put('/updatedep', async(req, res) => {
-    console.log(req.body);
     let result = await UserDB.updateOne({ _id: req.body._id }, { department: req.body.department });
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
     return res.send({ result: null, meta: { status: 200, des: "更新成功" } })

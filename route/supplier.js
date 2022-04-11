@@ -52,7 +52,6 @@ supplier.put('/insertMaterial', async(req, res) => {
 });
 // 修改供应商信息
 supplier.put('/update', async(req, res) => {
-    console.log(req.body);
     let result = await SupplierDB.updateOne({ _id: req.body._id }, req.body);
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
     return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
@@ -115,9 +114,7 @@ supplier.delete('/delMaterial', async(req, res) => {
 
 // 根据供应商名字获取供应商信息
 supplier.get("/name", async(req, res) => {
-    console.log(req.query);
     let result = await SupplierDB.findOne({ name: req.query.name });
-    console.log(result);
     res.send({ result: result, meta: { status: 201, des: 'success' } });
 })
 module.exports = supplier

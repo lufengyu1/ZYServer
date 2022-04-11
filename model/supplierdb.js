@@ -22,6 +22,10 @@ const SupplierScher = mongoose.Schema({
     card: {
         type: String,
         required: true
+    },
+    bank: {
+        type: String,
+        required: true
     }
 });
 
