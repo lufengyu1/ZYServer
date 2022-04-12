@@ -18,6 +18,14 @@ const isssuanceSchema = mongoose.Schema({
     state: {
         type: Number,
         required: true
+    },
+    userable: { //可用
+        type: Number,
+        default: 0,
+    },
+    todo: { // 正在处理
+        type: Number,
+        default: 0,
     }
 });
 const IsssuanceDB = mongoose.model('Isssuance', isssuanceSchema);

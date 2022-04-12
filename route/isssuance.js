@@ -18,7 +18,7 @@ isssuance.get('/isssuance', async(req, res) => {
 });
 isssuance.put('/insert', async(req, res) => {
     let info = await BillDB.findOne({ _id: req.body.id });
-    let i = { supplier: info.supplier, name: info.name, time: req.body.time, quantity: info.quantity, state: 0 };
+    let i = { supplier: info.supplier, name: info.name, time: req.body.time, quantity: info.quantity, state: 0, userable: info.quantity, todo: 0 };
     let result = await IsssuanceDB.insertMany(i);
     if (!result) {
         return res.send({ result: null, meta: { status: 404, des: '出库信息创建失败' } });
@@ -29,11 +29,22 @@ isssuance.put('/update', async(req, res) => {
     let result = await IsssuanceDB.findOne({ _id: req.body.id });
     let r = null;
     if (!result) return res.send({ result: null, meta: { status: 404, des: '出库信息无数据' } });
+    // 当全部出库，删除记录
     if (result.quantity * 1 - req.body.quantity * 1 === 0) {
         r = await IsssuanceDB.deleteOne({ _id: req.body.id, });
     } else {
-        r = await IsssuanceDB.updateOne({ _id: req.body.id }, { quantity: result.quantity * 1 - req.body.quantity * 1 });
+        r = await IsssuanceDB.updateOne({ _id: req.body.id }, { quantity: result.quantity * 1 - req.body.quantity * 1, todo: result.todo * 1 - req.body.quantity });
     }
     res.send({ result: null, meta: { status: 200, des: 'success' } });
+});
+isssuance.put('/update1', async(req, res) => {
+    let info = await IsssuanceDB.findOne({ _id: req.body.id });
+    if (!info) return res.send({ result: null, meta: { status: 404, des: '出库信息无数据' } });
+    if (info.userable * 1 - req.body.quantity < 0) {
+        return res.send({ result: null, meta: { status: 404, des: '库存不足' } });
+    }
+    let result = await IsssuanceDB.updateOne({ _id: req.body.id }, { userable: info.userable - req.body.quantity, todo: info.todo + req.body.quantity });
+    if (!result.acknowledged) return res.send({ result: null, meta: { status: 404, des: '更新失败' } });
+    return res.send({ result: null, meta: { status: 200, des: 'success' } })
 })
 module.exports = isssuance;

@@ -26,7 +26,7 @@ const billSchema = mongoose.Schema({
         required: true,
         default: 0, //0等待  1完成  2异常
     },
-    time: {
+    time: { //创建订单时间
         type: String,
         required: true
     },

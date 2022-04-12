@@ -24,7 +24,7 @@ const questionSchema = mongoose.Schema({
         type: String,
     },
     time: { type: String },
-    action: {
+    action: { //问题原料处理方式
         type: String,
         required: true
     }
