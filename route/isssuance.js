@@ -35,6 +35,7 @@ isssuance.put('/update', async(req, res) => {
     } else {
         r = await IsssuanceDB.updateOne({ _id: req.body.id }, { quantity: result.quantity * 1 - req.body.quantity * 1, todo: result.todo * 1 - req.body.quantity });
     }
+    if (!r.acknowledged) return res.send({ result: null, meta: { status: 404, des: '更新失败' } });
     res.send({ result: null, meta: { status: 200, des: 'success' } });
 });
 isssuance.put('/update1', async(req, res) => {

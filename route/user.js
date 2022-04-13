@@ -71,6 +71,7 @@ user.get('/userinfo', async(req, res) => {
 
 // 根据部门返回用户列表
 user.get('/department', async(req, res) => {
+    console.log(req.query);
     let { query, pageNum, pageSize } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     let result = await UserDB.find({ department: { $regex: query } })
@@ -83,14 +84,14 @@ user.get('/department', async(req, res) => {
 // 更新角色
 user.put('/updaterole', async(req, res) => {
     let result = await UserDB.updateOne({ _id: req.body._id }, { role: req.body.role });
-    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
+    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户角色更新失败" } });
     return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
 });
 
 // 更新部门
 user.put('/updatedep', async(req, res) => {
     let result = await UserDB.updateOne({ _id: req.body._id }, { department: req.body.department });
-    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
+    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户部门更新失败" } });
     return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
 });
 module.exports = user;
