@@ -94,4 +94,14 @@ user.put('/updatedep', async(req, res) => {
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户部门更新失败" } });
     return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
 });
+
+//找回密码
+user.put('/newpassword', async(req, res) => {
+    let exist = await UserDB.findOne({ username: req.body.username });
+    if (!exist) return res.send({ result: null, meta: { status: 404, des: '用户名不存在' } });
+    let result = await UserDB.updateOne({ username: req.body.username }, { password: req.body.password });
+    if (req.body.password === exist.password) return res.send({ result: null, meta: { status: 404, des: "密码不能与近期相同" } });
+    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户密码更新失败" } });
+    return res.send({ result: null, meta: { status: 200, des: 'success' } });
+})
 module.exports = user;
