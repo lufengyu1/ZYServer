@@ -8,7 +8,16 @@ const roleSchema = new mongoose.Schema({
     },
     des: {
         type: String
+    },
+    right: {
+        type: Array,
+        default: []
+    },
+    children: {
+        type: Array,
+        default: []
     }
+
 });
 const RoleDB = mongoose.model('Role', roleSchema);
 // RoleDB.create([{

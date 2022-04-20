@@ -31,12 +31,16 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //         path: 'users'
 //     }, {
 //         id: '120',
-//         name: '权限列表',
-//         path: 'right'
+//         name: '角色列表',
+//         path: 'role'
 //     }, {
 //         id: '130',
 //         name: '部门列表',
 //         path: 'department'
+//     }, {
+//         id: '140',
+//         name: '权限列表',
+//         path: 'right'
 //     }]
 // }, {
 //     id: '200',
@@ -87,7 +91,7 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //         name: '问题原料记录',
 //         path: 'question',
 //         children: []
-//     }, { id: '400', name: '数据统计', path: 'statistics', children: [{ id: '410', name: '原料入库数据统计', path: 'inbound' }, { id: '420', name: '原料出库数据统计', path: 'outbound' }, { id: '430', name: '原料出入库数据统计', path: 'iobound' }] }]
+//     }, { id: '400', name: '数据统计', path: 'statistics', children: [{ id: '410', name: '原料入库数据统计', path: 'inbound' }, { id: '420', name: '原料出库数据统计', path: 'outbound' }] }]
 // }]);
 // MenuDB.create({ id: '400', name: '数据统计', path: 'statistics', children: [{ id: '410', name: '原料入库数据统计', path: 'inbound' }, { id: '420', name: '原料出库数据统计', path: 'outbound' }] })
 module.exports = {

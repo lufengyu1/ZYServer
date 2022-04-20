@@ -71,7 +71,6 @@ user.get('/userinfo', async(req, res) => {
 
 // 根据部门返回用户列表
 user.get('/department', async(req, res) => {
-    console.log(req.query);
     let { query, pageNum, pageSize } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     let result = await UserDB.find({ department: { $regex: query } })
