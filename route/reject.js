@@ -1,7 +1,7 @@
 const express = require("express");
 const reject = express.Router();
 const { RejectDB } = require("../model/rejectdb");
-
+// 获取入库问题订单列表
 reject.get('/reject', async(req, res) => {
     let { pageNum, pageSize, query } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
@@ -15,6 +15,7 @@ reject.get('/reject', async(req, res) => {
     if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
     return res.send({ result: { total, pageNum, rejectList: result }, meta: { status: 200, des: 'success' } });
 });
+// 插入新
 reject.put('/insert', async(req, res) => {
     let result = await RejectDB.insertMany({ id: req.body.id, operation: req.body.operation, name: req.body.name, quantity: req.body.quantity, reason: req.body.reason, time: req.body.time, operator: req.body.operator, action: req.body.action });
     if (result) {
@@ -22,6 +23,7 @@ reject.put('/insert', async(req, res) => {
     }
     res.send({ result: null, meta: { status: 200, des: 'success' } });
 });
+// 根据id返回
 reject.get('/id', async(req, res) => {
     let result = await RejectDB.findOne({ id: req.query.id });
     if (!result) return res.send({ result: null, meta: { status: 404, des: '未知道错误订单' } });
