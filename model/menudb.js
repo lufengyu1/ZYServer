@@ -52,6 +52,11 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //         children: []
 //     }, {
 //         id: '220',
+//         name: '入库信息',
+//         path: 'instock',
+//         children: []
+//     }, {
+//         id: '230',
 //         name: '入库退货查询',
 //         path: 'reject',
 //         children: []
@@ -66,6 +71,10 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //         path: 'isssuance'
 //     }, {
 //         id: '320',
+//         name: '出库信息',
+//         path: 'outstock'
+//     }, {
+//         id: '330',
 //         name: '出库退货查询',
 //         path: 'question'
 //     }]

@@ -42,7 +42,7 @@ bill.put('/insert', async(req, res) => {
 // 更新账单
 bill.put('/update', async(req, res) => {
     let result = await BillDB.updateOne({ _id: req.body.id }, { state: req.body.state });
-    console.log(result);
+    (result);
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "更新失败" } });
     return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
 });

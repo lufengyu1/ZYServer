@@ -67,9 +67,23 @@ register.put('/update', async(req, res) => {
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "材料出入库失败" } });
     return res.send({ result: null, meta: { status: 200, des: "材料出入库成功" } })
 });
+// 获取已完成的
 register.get('/done', async(req, res) => {
     let result = await RegisterDB.find({ status: 1 });
     if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
     return res.send({ result: result, meta: { status: 200, des: "success" } });
+});
+// 获取已完成的入库 或 出库 加分页
+register.get('/inout', async(req, res) => {
+    let { pageNum, pageSize, query, type } = req.query;
+    if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
+    let result = await RegisterDB.find({ status: 1, operation: type });
+    let total = result.length;
+    result = await RegisterDB.find({
+        status: 1,
+        operation: type
+    }).limit(pageSize - 0);
+    if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
+    return res.send({ result: { total, pageNum, list: result }, meta: { status: 200, des: "success" } });
 });
 module.exports = register

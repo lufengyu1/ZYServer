@@ -28,14 +28,7 @@ const registerSchema = mongoose.Schema({
     }
 })
 const RegisterDB = mongoose.model('Register', registerSchema);
-// RegisterDB.create({
-//     id: '1',
-//     name: '生石灰',
-//     operation: 0, // 0 出库 ； 1 入库
-//     operator: 'aaa',
-//     time: '2022-1-1 00:00:00',
-//     status: 0
-// });
+
 module.exports = {
     RegisterDB
 }
