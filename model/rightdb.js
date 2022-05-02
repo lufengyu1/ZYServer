@@ -29,7 +29,7 @@ const RightDB = mongoose.model('Right', rightSchema);
 // RightDB.create([{ id: 130, name: '供应商信息', level: 1, pid: 100 }, { id: 131, name: '添加供应商信息', level: 2, pid: 130 }, { id: 132, name: '删除供应商信息', level: 2, pid: 130 }, { id: 133, name: '修改供应商信息', level: 2, pid: 130 }, { id: 134, name: '查找供应商信息', level: 2, pid: 130 }])
 
 // RightDB.create([{ id: 210, name: '原料入库', level: 1, pid: 200 }, { id: 211, name: '添加原料入库', level: 2, pid: 210 }, { id: 212, name: '删除原料入库', level: 2, pid: 210 }, { id: 213, name: '修改原料入库', level: 2, pid: 210 }, { id: 214, name: '查找原料入库', level: 2, pid: 210 }])
-// RightDB.create([{ id: 220, name: '出库信息', level: 1, pid: 200 }, { id: 221, name: '添加出库信息', level: 2, pid: 220 }, { id: 222, name: '删除出库信息', level: 2, pid: 220 }, { id: 223, name: '修改出库信息', level: 2, pid: 220 }, { id: 224, name: '查找出库信息', level: 2, pid: 220 }])
+// RightDB.create([{ id: 220, name: '入库信息', level: 1, pid: 200 }, { id: 221, name: '添加入库信息', level: 2, pid: 220 }, { id: 222, name: '删除入库信息', level: 2, pid: 220 }, { id: 223, name: '修改入库信息', level: 2, pid: 220 }, { id: 224, name: '查找入库信息', level: 2, pid: 220 }])
 // RightDB.create([{ id: 230, name: '入库退货查询', level: 1, pid: 200 }, { id: 231, name: '添加入库退货查询', level: 2, pid: 230 }, { id: 232, name: '删除入库退货查询', level: 2, pid: 230 }, { id: 233, name: '修改入库退货查询', level: 2, pid: 230 }, { id: 234, name: '查找入库退货查询', level: 2, pid: 230 }])
 
 // RightDB.create([{ id: 310, name: '原料出库', level: 1, pid: 300 }, { id: 311, name: '添加原料出库', level: 2, pid: 310 }, { id: 312, name: '删除原料出库', level: 2, pid: 310 }, { id: 313, name: '修改原料出库', level: 2, pid: 310 }, { id: 314, name: '查找原料出库', level: 2, pid: 310 }])

@@ -70,6 +70,7 @@ supplier.put('/updateMaterial', async(req, res) => {
     for (item of children) {
         if (item.name === req.body.name) {
             item.price = req.body.price;
+            item.des = req.body.des;
             break;
         }
     }
@@ -86,7 +87,7 @@ supplier.put('/updateMaterial', async(req, res) => {
         }
     }
     MaterialInfoDB.insertMany(insertList);
-    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
+    if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "原料信息更新失败" } });
     return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
 });
 // 删除供应商原料

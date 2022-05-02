@@ -15,6 +15,10 @@ const isssuanceSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    des: {
+        type: String,
+        required: true
+    },
     state: {
         type: Number,
         required: true

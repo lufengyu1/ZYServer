@@ -17,6 +17,10 @@ const billSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    des: {
+        type: String,
+        required: true
+    },
     total: {
         type: Number,
         required: true

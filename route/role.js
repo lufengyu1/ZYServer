@@ -48,7 +48,6 @@ role.get('/role', async(req, res) => {
 });
 // 根据角色名查询
 role.get('/rolename', async(req, res) => {
-    console.log(req.query);
     let result = await RoleDB.findOne({ name: req.query.name });
     if (!result) res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
     return res.send({ result: result, meta: { status: 200, des: 'success' } });

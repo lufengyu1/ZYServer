@@ -12,7 +12,10 @@ const materialInfoSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-
+    des: {
+        type: String,
+        required: true
+    }
 });
 const MaterialInfoDB = mongoose.model('materialInfo', materialInfoSchema);
 // MaterialInfoDB.create({

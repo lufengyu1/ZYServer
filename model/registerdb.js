@@ -16,6 +16,10 @@ const registerSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    des: {
+        type: String,
+        required: true
+    },
     operator: {
         type: String,
     },
