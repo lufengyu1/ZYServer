@@ -8,7 +8,6 @@ const billSchema = mongoose.Schema({
         type: String,
         required: true
     },
-
     quantity: {
         type: Number,
         required: true
@@ -36,7 +35,11 @@ const billSchema = mongoose.Schema({
     },
     operator: {
         type: String,
-    }
+    },
+    fkcard: { type: String, },
+    skcard: { type: String },
+    shaddress: { type: String },
+    fhaddress: { type: String },
 
 });
 const BillDB = mongoose.model('Bill', billSchema);

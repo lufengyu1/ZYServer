@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        unique: true,
+        required: true,
     },
     password: {
         type: String,
@@ -22,9 +22,11 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
+        required: true,
     },
     phone: {
         type: String,
+        required: true,
     },
     role: {
         type: String,
@@ -32,15 +34,30 @@ const userSchema = new mongoose.Schema({
     },
     state: {
         type: Boolean,
+        required: true,
         default: true // true启用，false禁止
     },
     isLogin: {
         type: Number,
         default: 0 // 0未登录，1已登录
     },
-    department: { type: String, },
+    department: { type: String, required: true, },
     create: {
         type: String,
+        required: true,
+    },
+    card: {
+        type: String,
+        required: true,
+    },
+    idcard: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    address: {
+        type: String,
+        required: true,
     }
 });
 //创建集合

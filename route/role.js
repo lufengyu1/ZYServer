@@ -30,7 +30,7 @@ role.put('/insert', async(req, res) => {
 role.put('/update', async(req, res) => {
     let result = await RoleDB.updateOne({ name: req.body.name }, req.body)
     if (!result.acknowledged || !result.modifiedCount) return res.send({ result: null, meta: { status: 404, des: "用户信息更新失败" } });
-    return res.send({ result: null, meta: { status: 200, des: "更新成功" } })
+    return res.send({ result: null, meta: { status: 200, des: "更新成功" } });
 });
 // delete 
 role.delete('/delete', async(req, res) => {

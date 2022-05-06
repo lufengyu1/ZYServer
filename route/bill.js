@@ -32,6 +32,7 @@ bill.get('/bill', async(req, res) => {
 
 // 创建新账单
 bill.put('/insert', async(req, res) => {
+    console.log(req.body);
     let result = await BillDB.insertMany(req.body);
     if (!result) {
         return res.send({ result: null, meta: { status: 404, des: '创建账单失败' } });

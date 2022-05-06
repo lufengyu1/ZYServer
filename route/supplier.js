@@ -116,6 +116,7 @@ supplier.delete('/delMaterial', async(req, res) => {
 // 根据供应商名字获取供应商信息
 supplier.get("/name", async(req, res) => {
     let result = await SupplierDB.findOne({ name: req.query.name });
-    res.send({ result: result, meta: { status: 201, des: 'success' } });
+    if (!result) return res.send({ result: null, meta: { status: 404, des: '获取供应商信息失败' } });
+    res.send({ result: result, meta: { status: 200, des: 'success' } });
 })
 module.exports = supplier

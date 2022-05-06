@@ -40,6 +40,11 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //         name: '供应商信息',
 //         path: 'supplier',
 //         children: []
+//     }, {
+//         id: '140',
+//         name: '企业信息',
+//         path: 'enterprise',
+//         children: []
 //     }]
 // }, {
 //     id: '200',
