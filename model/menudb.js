@@ -106,7 +106,7 @@ const MenuDB = mongoose.model('Menu', menuSchema);
 //     name: '人力资源管理',
 //     path: 'users',
 //     children: [{
-//         id: '600',
+//         id: '610',
 //         name: '用户列表',
 //         path: 'users'
 //     }, {

@@ -77,12 +77,24 @@ register.get('/done', async(req, res) => {
 register.get('/inout', async(req, res) => {
     let { pageNum, pageSize, query, type } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
-    let result = await RegisterDB.find({ status: 1, operation: type });
-    let total = result.length;
-    result = await RegisterDB.find({
-        status: 1,
-        operation: type
-    }).limit(pageSize - 0);
+    let total = 0;
+    let result = null;
+    if (query.trim().length === 0) {
+        result = await RegisterDB.find({ status: 1, operation: type, });
+        total = result.length;
+        result = await RegisterDB.find({
+            status: 1,
+            operation: type,
+        }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+    }
+    if (query.trim().length === 24) {
+        result = await RegisterDB.find({
+            status: 1,
+            operation: type,
+            _id: new ObjectId(query)
+        }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+        total = result.length;
+    }
     if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
     return res.send({ result: { total, pageNum, list: result }, meta: { status: 200, des: "success" } });
 });

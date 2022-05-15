@@ -23,7 +23,7 @@ const rightSchema = mongoose.Schema({
     }
 });
 const RightDB = mongoose.model('Right', rightSchema);
-// RightDB.create([{ id: 100, name: '基础管理', level: 0 }, { id: 200, name: '入库管理', level: 0 }, { id: 300, name: '出库管理', level: 0 }, { id: 400, name: '账单管理', level: 0 }, { id: 500, name: '数据统计', level: 0 }, { id: 600, name: '人力资源管理', level: 0 }])
+// RightDB.create([{ id: 100, name: '基础管理', level: 0 }, { id: 200, name: '入库管理', level: 0 }, { id: 300, name: '出库管理', level: 0 }, { id: 400, name: '账单管理', level: 0 }, { id: 500, name: '数据统计', level: 0 }, { id: 600, name: '用户管理', level: 0 }])
 // RightDB.create([{ id: 110, name: '登记出入库信息', level: 1, pid: 100 }, { id: 111, name: '添加登记出入库信息', level: 2, pid: 110 }, { id: 112, name: '删除登记出入库信息', level: 2, pid: 110 }, { id: 113, name: '修改登记出入库信息', level: 2, pid: 110 }, { id: 114, name: '查找登记出入库信息', level: 2, pid: 110 }])
 // RightDB.create([{ id: 120, name: '原料库存检查', level: 1, pid: 100 }, { id: 121, name: '添加原料库存检查', level: 2, pid: 120 }, { id: 122, name: '删除原料库存检查', level: 2, pid: 120 }, { id: 123, name: '修改原料库存检查', level: 2, pid: 120 }, { id: 124, name: '查找原料库存检查', level: 2, pid: 120 }])
 // RightDB.create([{ id: 130, name: '供应商信息', level: 1, pid: 100 }, { id: 131, name: '添加供应商信息', level: 2, pid: 130 }, { id: 132, name: '删除供应商信息', level: 2, pid: 130 }, { id: 133, name: '修改供应商信息', level: 2, pid: 130 }, { id: 134, name: '查找供应商信息', level: 2, pid: 130 }])
@@ -44,7 +44,7 @@ const RightDB = mongoose.model('Right', rightSchema);
 
 // RightDB.create([{ id: 610, name: '用户列表', level: 1, pid: 600 }, { id: 611, name: '添加用户', level: 2, pid: 610 }, { id: 612, name: '删除用户', level: 2, pid: 610 }, { id: 613, name: '修改用户', level: 2, pid: 610 }, { id: 614, name: '查找用户', level: 2, pid: 610 }])
 // RightDB.create([{ id: 620, name: '角色列表', level: 1, pid: 600 }, { id: 621, name: '添加角色', level: 2, pid: 620 }, { id: 622, name: '删除角色', level: 2, pid: 620 }, { id: 623, name: '修改角色', level: 2, pid: 620 }, { id: 624, name: '查找角色', level: 2, pid: 620 }])
-// RightDB.create([{ id: 630, name: '部门列表', level: 1, pid: 600 }, { id: 631, name: '添加部门', level: 2, pid: 630 }, { id: 632, name: '删除部门', level: 2, pid: 630 }, { id: 633, name: '修改部门', level: 2, pid: 630 }, { id: 634, name: '查找部门', level: 2, pid: 630 }])
+// RightDB.create([{ id: 630, name: '分组列表', level: 1, pid: 600 }, { id: 631, name: '添加分组', level: 2, pid: 630 }, { id: 632, name: '删除分组', level: 2, pid: 630 }, { id: 633, name: '修改分组', level: 2, pid: 630 }, { id: 634, name: '查找分组', level: 2, pid: 630 }])
 // RightDB.create([{ id: 640, name: '权限列表', level: 1, pid: 600 }, { id: 641, name: '添加权限', level: 2, pid: 640 }, { id: 642, name: '删除权限', level: 2, pid: 640 }, { id: 643, name: '修改权限', level: 2, pid: 640 }, { id: 644, name: '查找权限', level: 2, pid: 640 }])
 module.exports = {
     RightDB

@@ -4,7 +4,6 @@ const { SupplierDB } = require('../model/supplierdb');
 const { StockDB } = require("../model/stockdb")
 const materialInfo = express.Router();
 materialInfo.get('/materialInfo', async(req, res) => {
-
     let { query, pageNum, pageSize } = req.query;
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     let result = await MaterialInfoDB.find({ name: { $regex: query } });
