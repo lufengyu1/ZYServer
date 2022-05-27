@@ -10,11 +10,11 @@ question.get('/question', async(req, res) => {
     if (query.trim().length === 0) {
         result = await QuestionDB.find({});
         total = result.length;
-        result = await QuestionDB.find({}).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+        result = await QuestionDB.find({}).sort({ time: -1 }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
     } else {
         result = await QuestionDB.find({ _id: new ObjectId(query) });
         total = result.length;
-        result = await QuestionDB.find({ _id: new ObjectId(query) }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+        result = await QuestionDB.find({ _id: new ObjectId(query) }).sort({ time: -1 }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
     }
 
     res.send({ result: { total: total, pageNum, questionList: result }, meta: { status: 200, des: 'Success' } });

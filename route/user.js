@@ -44,12 +44,17 @@ user.put('/update', async(req, res) => {
 // 添加用户
 user.put('/add', async(req, res) => {
     let exist = await UserDB.findOne({ username: req.body.username });
+    let exist1 = await UserDB.findOne({ idcard: req.body.idcard })
     if (exist) {
         return res.send({ result: null, meta: { status: 404, des: "用户名已存在" } });
     } else {
-        let result = await UserDB.insertMany(req.body);
-        if (result) {
-            res.send({ res: null, meta: { status: 200, des: "success" } });
+        if (exist1) {
+            return res.send({ result: null, meta: { status: 404, des: "身份证号已存在" } });
+        } else {
+            let result = await UserDB.insertMany(req.body);
+            if (result) {
+                res.send({ res: null, meta: { status: 200, des: "success" } });
+            }
         }
     }
 });

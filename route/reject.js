@@ -10,7 +10,7 @@ reject.get('/reject', async(req, res) => {
     let total = result.length;
     result = await RejectDB.find({ id: { $regex: query } }).limit(pageSize - 0);
     if (pageNum > 0) {
-        result = await RejectDB.find({ id: { $regex: query } }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+        result = await RejectDB.find({ id: { $regex: query } }).sort({ time: -1 }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
     }
     if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
     return res.send({ result: { total, pageNum, rejectList: result }, meta: { status: 200, des: 'success' } });

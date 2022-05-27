@@ -76,6 +76,7 @@ register.get('/done', async(req, res) => {
 // 获取已完成的入库 或 出库 加分页
 register.get('/inout', async(req, res) => {
     let { pageNum, pageSize, query, type } = req.query;
+    console.log(req.query);
     if (!pageNum || !pageSize) return res.send({ result: null, meta: { status: '404', des: '参数错误' } });
     let total = 0;
     let result = null;
@@ -85,14 +86,14 @@ register.get('/inout', async(req, res) => {
         result = await RegisterDB.find({
             status: 1,
             operation: type,
-        }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+        }).sort({ time: -1 }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
     }
     if (query.trim().length === 24) {
         result = await RegisterDB.find({
             status: 1,
             operation: type,
             _id: new ObjectId(query)
-        }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
+        }).sort({ time: -1 }).skip((pageNum - 1) * pageSize).limit(pageSize - 0);
         total = result.length;
     }
     if (!result) return res.send({ result: null, meta: { status: 404, des: '数据库错误' } });
